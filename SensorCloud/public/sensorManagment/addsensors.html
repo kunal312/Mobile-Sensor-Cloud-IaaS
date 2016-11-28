@@ -1,0 +1,119 @@
+<html>
+<style>
+    #map {
+        height:420px;
+        width:600px;
+    }
+    .infoWindowContent {
+        font-size:  14px !important;
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
+    }
+    h2 {
+        margin-bottom:0;
+        margin-top: 0;
+    }
+    <style type="text/css">
+    html, body, #map_canvas {
+        height: 100%;
+        width: 100%;
+        margin: 0px;
+    }
+
+    #map_canvas {
+        position: relative;
+    }
+
+    .angular-google-map-container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+</style>
+</style>
+
+<h1>Add Sensors</h1>
+
+
+
+<div class="form-group">
+    <label for="platform">Choose Platform</label>
+
+    <select ng-model="platforms" class="form-control" id="platform">
+        <optgroup label="Android">
+            <option>Android v4</option>
+            <option>Android v5</option>
+            <option>Android v6</option>
+        </optgroup>
+        <optgroup label="IOS">
+            <option>iPhone 5s</option>
+            <option>iPhone 6</option>
+            <option>iPhone 7</option>
+        </optgroup>
+        <optgroup label="Windows">
+            <option>Windows 8.1</option>
+            <option>Windows 10</option>
+        </optgroup>
+    </select>
+</div>
+
+
+<div class="form-group">
+    <label for="sensortype">Senor Type</label>
+    <select ng-model="sensortype" class="form-control" id="sensortype">
+
+            <option>Temperature Sensor</option>
+            <option>Proximity Sensor</option>
+            <option>Pressure Sensor</option>
+            <option>Humidity Sensor</option>
+            <option>Light Sensor</option>
+            <option>Air Quality Sensor</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="physicalsensor">Physical or Virtual</label>
+    <select ng-model="physicalsensor" class="form-control" id="physicalsensor">
+
+        <option>Physical Sensor</option>
+        <option>Virtual Sensor</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="connectivity">Connectivity</label>
+    <select ng-model="connectivity" class="form-control" id="connectivity">
+
+        <option>Wi-Fi</option>
+        <option>LTE</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="storage">Storage</label>
+    <select ng-model="storage" class="form-control" id="storage">
+
+        <option>2Gb</option>
+        <option>4Gb</option>
+        <option>8Gb</option>
+        <option>16Gb</option>
+        <option>32Gb</option>
+        <option>64Gb</option>
+        <option>128Gb</option>
+
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="resourceallocation">Resource Allocation Policy</label>
+    <select ng-model="resourceallocation" class="form-control" id="resourceallocation">
+        <option>Static</option>
+        <option>Dynamic</option>
+    </select>
+</div>
+<button type="button"  style="width:150px" class="btn btn-danger" ng-click="sensordetails(platforms,sensortype,physicalsensor,connectivity,storage,resourceallocation)">Next</button>
+
+
+</html>

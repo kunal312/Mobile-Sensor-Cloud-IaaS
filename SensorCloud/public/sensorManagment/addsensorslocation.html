@@ -1,0 +1,11 @@
+
+<h1>Select a location!</h1>
+<p>Drag the marker to change location.</p>
+<span style="color:#00FF00">{{selectedlocation}}</span>
+<button type="button" style="margin-bottom:15px;float:right;width:250px" style="width:150px" class="btn btn-warning" ng-click="addsensor(platforms,sensortype,physicalsensor,connectivity,storage,resourceallocation)">Add Sensor</button>
+
+<div map-lazy-load="https://maps.google.com/maps/api/js">
+    <ng-map center="37,-121" zoom="8">
+        <marker position="[37,-121]" title="drag me" draggable="true" on-dragend="getCurrentLocation()"></marker>
+    </ng-map>
+</div>

@@ -1,0 +1,138 @@
+
+<style>
+    .table>tbody>tr>td, .table>tfoot>tr>td{
+        vertical-align: middle;
+    }
+    @media screen and (max-width: 600px) {
+        table#cart tbody td .form-control{
+            width:20%;
+            display: inline !important;
+        }
+        .actions .btn{
+            width:36%;
+            margin:1.5em 0;
+        }
+
+        .actions .btn-info{
+            float:left;
+        }
+        .actions .btn-danger{
+            float:right;
+        }
+
+        table#cart thead { display: none; }
+        table#cart tbody td { display: block; padding: .6rem; min-width:320px;}
+        table#cart tbody tr td:first-child { background: #333; color: #fff; }
+        table#cart tbody td:before {
+            content: attr(data-th); font-weight: bold;
+            display: inline-block; width: 8rem;
+        }
+
+
+
+        table#cart tfoot td{display:block; }
+        table#cart tfoot td .btn{display:block;}
+
+    }
+    .customviewcartborder{
+        border: 1px solid #ddd;
+        box-sizing: border-box;
+
+    }
+    .pb15 {
+        padding-bottom: 15px;
+    }
+    .headingcartsummary{
+        display: inline;
+        line-height: 1;
+        font-weight: bold;
+        font-size: 28px;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+        font-family: "Helvetica Neue",Helvetica,Verdana,Sans-serif;
+    }
+    .pt10 {
+        padding-top: 10px;
+    }
+    .solidLine {
+        background-color: transparent;
+        border-top: 1px solid #777;
+        color: transparent;
+        height: 1px;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        line-height: 1px;
+        float: left;
+    }
+    .totalsummary{
+        font-weight: bold;
+        font-size: 28px;
+
+    }
+    .totalcolor{
+        color: #333;
+    }
+    .checkoutbutton{
+        margin: 15px 8px 17px 1px;
+        padding: 0;
+        border: 0;
+        font-size: 150%;
+    }
+    .headercart{
+
+        font-size: 28px;
+        padding-left: 55px;
+    }
+
+</style>
+
+<h1 class="headercart"> Your Sensors</h1>
+
+<div class="container">
+    <div class="row">
+
+            <table id="cart" class="table table-hover table-condensed">
+                <thead>
+                <tr>
+                    <th style="width:5%">SensorId</th>
+                    <th style="width:15%">Platform</th>
+                    <th style="width:15%">SenorType</th>
+                    <th style="width:15%">SenorMode</th>
+                    <th style="width:10%">Allocation</th>
+                    <th style="width:20%">Latitude</th>
+                    <th style="width:20%">Longitude</th>
+
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr ng-repeat="sensor in sensors">
+                    <td data-th="Product">
+                        <div class="row">
+                                <div class="col-sm-12 " >
+                                    <h4 class="nomargin" ng-model="sensorid">{{sensor.sensorid}}</h4>
+                                </div>
+                        </div>
+                    </td>
+                    <td data-th="Platform" ng-model="platform">{{sensor.platform}}</td>
+                    </td>
+                    <td data-th="SenorType" ng-model="sensortype" class="text-center">{{sensor.sensortype }}</td>
+                    <td data-th="SenorMode" ng-model="sensormode" class="text-center">{{sensor.sensormode }}</td>
+                    <td data-th="Allocation" ng-model="allocation" class="text-center">{{sensor.resourceallocation }}</td>
+                    <td data-th="Latitude" ng-model="latitude" class="text-center">{{sensor.sensorlat }}</td>
+                    <td data-th="Longitude" ng-model="longitude" class="text-center">{{sensor.sensorlng }}</td>
+
+                </tr>
+                </tbody>
+
+            </table>
+
+
+
+
+
+    </div>
+</div>
+
