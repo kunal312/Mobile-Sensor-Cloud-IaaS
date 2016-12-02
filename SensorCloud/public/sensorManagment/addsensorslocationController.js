@@ -1,31 +1,97 @@
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.js"></script>
-<script src="https://rawgit.com/rzajac/angularjs-slider/master/dist/rzslider.js"></script>
-<div ng-app="rzSliderDemo">
-    <div ng-controller="MainCtrl" class="wrapper">
-        <header>
-             <h1>AngularJS Touch Slider</h1>
+sensorCloud.controller("addsensorslocationController", function($scope,$http,$window,$state,$stateParams,NgMap) {
 
-        </header>
+    console.log("Reached addsensorslocationController");
+    
 
-        <article>
-             <h2>Range slider</h2>
-Min Value:
-            <input type="number" ng-model="minRangeSlider.minValue" />
-            <br/>Max Value:
-            <input type="number" ng-model="minRangeSlider.maxValue" />
-            <br/>
-            <rzslider rz-slider-model="minRangeSlider.minValue" rz-slider-high="minRangeSlider.maxValue" rz-slider-options="minRangeSlider.options"></rzslider>
-        </article>
-        <article>
-             <h2>Slider with visible selection bar</h2>
+    $scope.platforms = $stateParams.platforms;
+    $scope.sensortype = $stateParams.sensortype;
+    $scope.physicalsensor = $stateParams.physicalsensor;
+    $scope.connectivity = $stateParams.connectivity;
+    $scope.storage = $stateParams.storage;
+    $scope.resourceallocation = $stateParams.resourceallocation;
+    
+    	
+    	
+//    	"platforms" :  $scope.platforms,
+//        "sensortype" :$scope.sensortype,
+//        "physicalsensor" :$scope.physicalsensor,
+//        "connectivity" :$scope.connectivity,
+//        "storage" :$scope.storage,
+//        "resourceallocation" :$scope.resourceallocation});
+// 	
+//    	
+    	
+    	
+    	
+    NgMap.getMap().then(function(map) {
+        console.log(map.getCenter());
+        console.log('markers', map.markers);
+        console.log('shapes', map.shapes);
+    });
 
-            <rzslider rz-slider-model="slider_visible_bar.value" rz-slider-options="slider_visible_bar.options"></rzslider>
-        </article>
-        
-      
+    
+    
+    $scope.getCurrentLocation = function(e,p)
+    {
+    	console.log(e);
+    	console.log(p);
+    	console.log("latitude:"+e.latLng.lat());
+    	console.log("longitude:"+e.latLng.lng());
+    	$scope.selectedlocation = "Latitude:"+e.latLng.lat()+" Longitude:"+e.latLng.lng()+"";
+    	$scope.latitude = e.latLng.lat();
+    	$scope.longitude = e.latLng.lng();
+    }
+//
+//    $scope.showproperty = function(e,p){
+//
+//        $scope.p = p;
+//        $scope.showInfoWindow('bar', p._id);
+//        $scope.limage = p.listingImages[0][0];
+//        console.log("Image URL:"+$scope.limage);
+//    };
+    
+    $scope.addsensor=function(platforms,sensortype,physicalsensor,connectivity,storage,resourceallocation)
+    {
+    	$http({
 
-       
-     
-    </div>
-</div>
+			method : "POST",
+			url: '/addSensor',
+			data: {
+					"platform": $scope.platforms,
+					"sensortype":  $scope.sensortype,
+					"sensormode":  $scope.physicalsensor,
+					"connectivity":  $scope.connectivity,
+					"storage":  $scope.storage,
+					"resourceallocation": $scope.resourceallocation,
+					"sensorlng": $scope.longitude,
+					"sensorlat": $scope.latitude
+	    	
+				}
+
+			}).success(function(data)
+				{
+
+					console.log("Status Code " + data.statusCode);
+					if(data.statusCode==200)
+						{
+							alert("Sensor Added Successfully");
+							
+
+						}
+
+						else if(data.statusCode==401)
+							{
+							console.log(data.statusCode);
+							alert("Sensor Cannot be added");
+
+							
+							}
+
+							
+						
+						
+				})
+    }
+
+
+})
